@@ -120,13 +120,17 @@ export const UserProvider = ({ children }) => {
     let idpProvider;
     // Safeguard against server rendering
     if (typeof window !== "undefined") {
-      const isLocal = process.env.DFX_NETWORK !== "ic";
+      const isLocal = process.env.DFX_NETWORK == "local";
       // Safari does not support localhost subdomains
       const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
       if (isLocal && isSafari) {
         idpProvider = `http://localhost:4943/?canisterId=${process.env.CANISTER_ID_INTERNET_IDENTITY}`;
       } else if (isLocal) {
         idpProvider = `http://${process.env.CANISTER_ID_INTERNET_IDENTITY}.localhost:4943`;
+      }
+      else
+      {
+        idpProvider = `https://identity.ic0.app/#authorize`;
       }
     }
     return idpProvider;
