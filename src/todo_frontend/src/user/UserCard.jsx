@@ -59,8 +59,8 @@ function UserCard() {
                     <div>    
                     { myUser ? (
                     <div>        
-                      <p class="user-name">{myUser.principal.toText()}</p>
-                      <p class="user-login">{myUser.nickname}</p>
+                      <p class="user-princ">{myUser.principal.toText()}</p>
+                      <p class="user-name"><b>{myUser.nickname}</b></p>
                       <button class="btn btn-danger ms-auto" onClick={logout}>Log Out</button>
                     </div>  
                         ) : (
@@ -75,8 +75,8 @@ function UserCard() {
               </div>
           ) : (            
             <div>        
-              <p class="user-name">xxxxx-xxxxx-xxxxx-xxxxx-xxxxx-xxxxx-xxxxx-xxxxx-xxxxx-xxxxx-xxx</p>
-              <p class="user-login">Гость</p>
+              <p class="user-princ">xxxxx-xxxxx-xxxxx-xxxxx-xxxxx-xxxxx-xxxxx-xxxxx-xxxxx-xxxxx-xxx</p>
+              <p class="user-name">Guest</p>
               <button class="btn btn-primary ms-auto" onClick={login}>IC Log In</button>
             </div>  
           )

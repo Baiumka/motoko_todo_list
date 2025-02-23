@@ -20,17 +20,17 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {//userActor
     const fetchUser = async () => {
-        try {
-            const newUser = await userActor.getUser();            
-            if (newUser.length === 0) {             
-                setIsNewUser(true);
-            } else {                            
-                setIsNewUser(false);    
-                setMyUser(newUser[0]);                
-            }
-        } catch (e) { 
-            console.error("GET USER ERROR ", e); 
-        }  
+        userActor.getUser().then((newUser) => {   
+          if (newUser.length === 0) {             
+            setIsNewUser(true);
+          } else {                            
+              setIsNewUser(false);    
+              setMyUser(newUser[0]);                
+          }
+        })
+        .catch((error) => {      
+          showError(error.message);
+        }); 
     };
 
     if (userActor) {
@@ -99,9 +99,15 @@ export const UserProvider = ({ children }) => {
 
   const register = async (newName) => {
     try
-    {
-      await userActor.register(newName);           
-      await getActorUser(); 
+    {      
+      userActor.register(newName).then((newUser) => {   
+        setIsNewUser(false);    
+        setMyUser(newUser);   
+      })
+      .catch((error) => {      
+        showError(error.message);
+      });      
+      
     }
     catch (e)
     {

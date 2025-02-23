@@ -6,11 +6,7 @@ import Error "mo:base/Error";
 import Bool "mo:base/Bool";
 import Time "mo:base/Time";
 
-//ToDo List
-//1.Add admins permitions
-//2.Edit UserContext, add OnSuccess
-//3.Check how to catch errors
-actor {
+shared({ caller = initializer }) actor class() {
     
   type User = {
     id: Nat;
@@ -34,7 +30,7 @@ actor {
   stable var userIdCounter: Nat = 1;
   stable var taskIdCounter: Nat = 1;
 
-  public shared (msg) func register(nickname: Text): async () {
+  public shared (msg) func register(nickname: Text): async User {
     let callerUser = await getUserByPrinc(msg.caller);
     switch (callerUser) {
       case (?user)
@@ -49,6 +45,7 @@ actor {
         };
         users := Array.append<User>(users, [newUser]);
         userIdCounter += 1; 
+        return newUser;
       };
     };       
   };
@@ -233,17 +230,40 @@ actor {
   }; 
 
 
-  public func reset() {
-    users := [];
-    userIdCounter := 0;
+  public shared (msg) func reset() {
+    if (msg.caller != initializer) 
+    { 
+      throw Error.reject("You has no permissions!"); 
+    }
+    else
+    {
+      tasks := [];
+      taskIdCounter := 1;
+      users := [];
+      userIdCounter := 1;
+    }
   };
 
-  public query func getUsers(): async [User] {
-    return users;
+  public shared (msg) func getUsers(): async [User] {
+    if (msg.caller != initializer) 
+    { 
+      throw Error.reject("You has no permissions!"); 
+    }
+    else
+    {
+      return users;
+    }
   };
 
-  public query func getTasks(): async [Task] {
-    return tasks;
+  public shared (msg) func getTasks(): async [Task] {
+    if (msg.caller != initializer) 
+    { 
+      throw Error.reject("You has no permissions!"); 
+    }
+    else
+    {
+      return tasks;
+    }
   };
 
   
