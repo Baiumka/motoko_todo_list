@@ -1,0 +1,144 @@
+
+body {
+  font-family: sans-serif;
+  font-size: 1.5rem;
+  color: black;
+}
+
+nav {
+  font-family: sans-serif;  
+  color: white;
+}
+
+.logo
+{
+  min-width: 400px;
+  max-width: 600px;
+  max-height: 147;
+  vertical-align: center;
+
+}
+
+.user-card {
+  background: #ffffff;  
+  border-radius: 8px;
+  height: auto;
+  max-height: 147;
+  min-width: 400px;
+  max-width: 600px;
+  float: right;
+  vertical-align: center;
+}
+
+.user-avatar {
+  width: 80px;
+  height: 80px;  
+  float: left;
+}
+
+.user-info {
+  color: #333;
+}
+
+.user-name {
+  font-size: 0.7rem;
+}
+
+.user-login {
+  font-size: 1.2rem;
+}
+
+
+.task-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;  
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px; 
+}
+
+.task-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.task-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #000000;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.task-crown-icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;  
+}
+
+.task-subtitle {
+  font-size: 0.9rem;
+  color: #000000;
+}
+
+.task-description {
+  font-size: 1rem;
+  color: #000000;
+}
+
+.task-date {
+  font-size: 0.85rem;
+  color: #000000;
+}
+
+.button-container {
+  margin-top: 10px;
+}
+
+.button-container .btn {
+  width: 100%;
+}
+
+.task-delete-btn {
+  font-size: 1.5rem;
+  color: #dc3545;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.task-delete-btn:hover {
+  color: #c82333;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .task-card {
+    margin-bottom: 20px;
+  }
+}
+
+h1 {
+  font-family: 'Cinzel', serif;
+  background: linear-gradient(90deg, #ee8ff1, #409edd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtext {
+  font-style: italic;
+  color: #000000;
+}
